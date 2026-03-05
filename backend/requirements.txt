@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+httpx
+beautifulsoup4
+playwright
+pymupdf
+python-docx
+python-dotenv
+groq
+supabase
