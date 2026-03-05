@@ -52,7 +52,7 @@ export default function App() {
       if (file) formData.append("file", file)
       if (user) formData.append("user_id", user.id)
 
-      const response = await axios.post("http://localhost:8000/analyze", formData)
+      const response = await axios.post("https://formsense.onrender.com/analyze", formData)
       setResult(response.data)
       fetchHistory()
     } catch (err) {
