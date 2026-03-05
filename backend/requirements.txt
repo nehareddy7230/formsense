@@ -8,3 +8,4 @@ python-docx
 python-dotenv
 groq
 supabase
+python-multipart
