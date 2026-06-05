@@ -40,14 +40,13 @@ async def scrape_url(url: str) -> str:
         clean_text = "\n".join(lines)
 
         if len(clean_text) > 500:
-            print("Using HTTPX scrape")
             return clean_text[:8000]
-
-        print("Using Playwright scrape")
-        return await scrape_with_playwright(url)
 
     except Exception as e:
         return f"Could not scrape website: {str(e)}"
+
+    print("Using Playwright scrape")
+    return await scrape_with_playwright(url)
 
 
 async def scrape_with_playwright(url: str) -> str:
@@ -55,13 +54,15 @@ async def scrape_with_playwright(url: str) -> str:
         print("Starting Playwright")
 
         async with async_playwright() as p:
+            print("Chromium path:", p.chromium.executable_path)
             browser = await p.chromium.launch(
-                headless=True,
-                args=[
-                    "--no-sandbox",
-                    "--disable-dev-shm-usage"
-                ]
-            )
+    executable_path=p.chromium.executable_path,
+    headless=True,
+    args=[
+        "--no-sandbox",
+        "--disable-dev-shm-usage"
+    ]
+)
 
             page = await browser.new_page(
                 user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
