@@ -47,9 +47,7 @@ async def scrape_url(url: str) -> str:
         return await scrape_with_playwright(url)
 
     except Exception as e:
-        print("HTTPX Error:", str(e))
-        print("Using Playwright scrape")
-        return await scrape_with_playwright(url)
+        return f"Could not scrape website: {str(e)}"
 
 
 async def scrape_with_playwright(url: str) -> str:

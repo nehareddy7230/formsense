@@ -2,7 +2,7 @@ fastapi
 uvicorn
 httpx
 beautifulsoup4
-playwright
+playwright==1.49.1
 pymupdf
 python-docx
 python-dotenv
