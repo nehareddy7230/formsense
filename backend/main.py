@@ -48,6 +48,13 @@ async def analyze(
     await save_analysis(input_type, url, input_filename, raw_text, result, user_id)
 
     return result
+@app.get("/playwright-test")
+async def playwright_test():
+    from playwright.async_api import async_playwright
 
+    async with async_playwright() as p:
+        return {
+            "chromium_path": p.chromium.executable_path
+        }
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
